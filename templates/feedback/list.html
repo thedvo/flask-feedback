@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %} Feedback {% endblock %}
+
+{% block content %}
+<div>
+    <h1> Feedback</h1>
+
+    {% for post in feedback %}
+    <div class="mb-4">
+        <h3>{{post.title}}</h3>
+        <p>{{post.content}}</p>
+
+       <i>by: {{post.username}}</i>
+    </div>
+    {% endfor %}
+
+</div>
+{% endblock %}
