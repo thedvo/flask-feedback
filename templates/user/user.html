@@ -31,21 +31,42 @@
 
 </div>
 
-<div class="mt-4">
-    {% for post in feedback %}
-    <h3>{{post.title}}</h3>
-    <p>{{post.content}}</p>
-    
-    {% if session['username'] == user.username %}
-    <form action="/feedback/{{post.id}}/update">
-        <button class="btn btn-outline-success btn-sm">Edit</button>
-    </form>
+{% for post in feedback %}
+<div class="card text-dark bg-light mb-3 mt-4" style="max-width: 25rem;">
+    <div class="card-header">Feedback</div>
+        <div class="card-body">
 
-    <form action="/feedback/{{post.id}}/delete" method="POST">
-        <button class="btn btn-danger btn-sm">Delete</button>
-    </form>
-    {% endif %}
+        <h3 class="card-title">{{post.title}}</h3>
+        <p class="card-text">{{post.content}}</p>
+        
+        <div class="row">
+            <div class="col-2">
+                {% if session['username'] == user.username %}
+                <form action="/feedback/{{post.id}}/update">
+                    <button class="btn btn-dark btn-sm">Edit</button>
+                </form>
+            </div>
+            <div class="col-2">
+                <form action="/feedback/{{post.id}}/delete" method="POST">
+                    <button class="btn btn-danger btn-sm">Delete</button>
+                </form>
+            </div>
+        </div>
+        {% endif %}
+    </div>
 </div>
     {% endfor %}
+
+
+
+
+    <!-- <div class="card text-white bg-info mb-3" style="max-width: 20rem;">
+        <div class="card-header">Header</div>
+        <div class="card-body">
+            <h4 class="card-title">Info card title</h4>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+        </div>
+    </div> -->
 
 {% endblock %}

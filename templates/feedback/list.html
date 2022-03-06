@@ -3,17 +3,21 @@
 {% block title %} Feedback {% endblock %}
 
 {% block content %}
-<div>
-    <h1> Feedback</h1>
+<div class="row">
+    <h1>Feedback</h1>
 
     {% for post in feedback %}
-    <div class="mb-4">
-        <h3>{{post.title}}</h3>
-        <p>{{post.content}}</p>
+    <div class="col-4">
+    <div class="card bg-light mb-3">
+        <div class="card-header"><a href="/users/{{post.username}}" class="text-decoration-none text-info">{{post.username}}</a> says:</div>
+        <div class="card-body">
 
-       <i>by: {{post.username}}</i>
+        <h3 class="card-title">{{post.title}}</h3>
+        <p class="card-text">{{post.content}}</p>
+        </div>
     </div>
-    {% endfor %}
-
 </div>
+{% endfor %}
+</div>
+  
 {% endblock %}
