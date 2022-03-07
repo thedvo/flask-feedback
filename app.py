@@ -3,13 +3,19 @@ from flask_debugtoolbar import DebugToolbarExtension
 from models import *
 from forms import *
 from sqlalchemy.exc import IntegrityError
+import os
+import re
+
+uri = os.environ.get('DATABASE_URL', 'postgresql:///feedback')
+if uri.startswith("postgres://"):
+    uri = uri.replace("postgresql://", 1)
 
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql:///feedback"
+app.config["SQLALCHEMY_DATABASE_URI"] = uri
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["SQLALCHEMY_ECHO"] = True
-app.config["SECRET_KEY"] = "secret"
+app.config["SECRET_KEY"] = os.environ.get('SECRET_KEY', 'secret')
 app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 
 connect_db(app)
