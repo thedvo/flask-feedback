@@ -8,7 +8,7 @@ import re
 
 uri = os.environ.get('DATABASE_URL', 'postgresql:///feedback')
 if uri.startswith("postgres://"):
-    uri = uri.replace("postgresql://", 1)
+    uri = uri.replace("postgres://", "postgresql://", 1)
 
 
 app = Flask(__name__)
